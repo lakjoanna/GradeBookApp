@@ -27,6 +27,12 @@ Grade.belongsTo(Course,{ foreignKey:"courseId" })
 User.hasMany(Comment, { foreignKey:"userId" })
 Comment.belongsTo(User, { foreignKey:"userId" })
 
+const authRoute = require("./routes/authRoute")
+app.use("/api/auth",  authRoute)
+
+const userRoute = require("./routes/usersRoute")
+app.use("/api/users", userRoute)
+
 database
     // .sync({ force: true })
     .sync()
