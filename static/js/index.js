@@ -1,4 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // Jeśli ktoś jest zalogowany i próbuje wejść na stronę logowania
+    // to przekirowywujemy go do panelu użytkownika
+    if(localStorage.getItem("userData"))
+    {
+        window.location = "/userpanel"
+        return
+    }
+
 
     const inputLogin = document.getElementById("inputLogin")
     const inputPassword = document.getElementById("inputPassword")
@@ -23,15 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
             body: JSON.stringify(data)
         })
         .then(res=>{
-            if(res.ok)
-            {
-                alert("Zalogowano")
-                return res.json()
-            }
-            else
-            {
-                alert("Error")
-            }
+            return res.json()
         })
         .then(data => {
             if(!data)
@@ -39,8 +39,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 return
             }
 
-            const json = JSON.stringify(data)
+            if(!data.success)
+            {
+                alert(data.message)
+                return
+            }
+
+            // Jeśli kod doszedł do tego momentu wykonania to
+            // proces logowania i weryfikacji danych na serwerze przebiegł poprawnie
+            const json = JSON.stringify({ user: data.user })
             localStorage.setItem("userData", json)
+
+            window.location = "/userpanel"
         })
     })
 })

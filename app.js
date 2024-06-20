@@ -33,6 +33,13 @@ app.use("/api/auth",  authRoute)
 const userRoute = require("./routes/usersRoute")
 app.use("/api/users", userRoute)
 
+const coursesRoute = require("./routes/coursesRoute")
+app.use("/api/courses", coursesRoute)
+
+app.get("/userpanel", (req,res) => {
+    res.sendFile("./static/userPanel.html", { root: __dirname })
+})
+
 database
     // .sync({ force: true })
     .sync()

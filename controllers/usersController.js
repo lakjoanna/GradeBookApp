@@ -22,7 +22,51 @@ const postCreateUserController = async (req,res) => {
     })
     res.sendStatus(200)
 }
-module.exports ={
+
+const putUpdateUserController = async (req,res) => {
+    const id = req.params.id
+    const password = req.body.password
+    const name = req.body.name
+    const surname = req.body.surname
+    const roleId = req.body.roleId
+
+    const user = await User.findOne({
+        where: { id }
+    })
+
+    if(password)
+    {
+        user.password = await crypt.hash(password, 10)
+    }
+
+    if(name)
+    {
+        user.name = name
+    }
+
+    if(surname)
+    {
+        user.surname = surname
+    }
+
+    if(roleId)
+    {
+        user.roleId = roleId
+    }
+
+    await user.save()
+    res.sendStatus(200)
+}
+
+const deleteRemoveUserController = async (req,res) => {
+    const id = req.params.id
+
+    await User.destroy({ where: {id: id} })
+    res.sendStatus(200)
+}
+module.exports = {
     getAllUsersController,
-    postCreateUserController
+    postCreateUserController,
+    putUpdateUserController,
+    deleteRemoveUserController
 }

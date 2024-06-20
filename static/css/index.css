@@ -1,0 +1,70 @@
+html, body {
+    padding: 0;
+    margin: 0;
+    font-family: 'DM Sans', sans-serif;
+    letter-spacing: 1px;
+    background-image: url("/img/students.jpg");
+    width: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+ }
+
+
+.form-caption{
+    color: #5F8BC8;
+    margin-left: 20px;
+    font-weight: normal;
+}
+
+.form-item {
+    display: block;
+    width: 260px;
+    padding: 10px 20px;
+    color: #696969;
+    font-size: 16px;
+    text-shadow: 0 0 1px silver;
+} 
+
+.p-formitem {
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+
+.form-label{
+    color: #544d4d;
+}
+
+.form-input{
+    display: block;
+    width: 360px; 
+    margin-top: 20px;
+    padding: 10px 5px;
+    border-radius: 5px;
+    border: 1px solid rgb(192, 192, 192);
+    outline: 2px solid #ebebeb;
+    font-size: 16px;
+    color: rgb(32, 32, 32);
+}
+
+.btn-primary {
+    background-image: url(/img/login.png);
+    background-repeat: no-repeat;
+    background-size: 32%;
+    background-position: unset;
+    color: #5F8BC8;
+    border: 0px solid #24d8b7;
+    font-size: 20px;
+    padding: 20px;
+    transition-duration: 0.4s;
+    margin: 20px;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.btn-primary:hover{
+    color: #696969;
+}

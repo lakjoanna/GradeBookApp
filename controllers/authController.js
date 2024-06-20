@@ -12,10 +12,15 @@ const postSigninController = async (req, res) => {
     // 4. Jeśli wszystkie etapy logowania przeszły poprawnie, to znaczy, że użytkownik podał poprawne dane i możemy mu odesłać stosony obiekt (patrz na opis)
 
     const user = await User.findOne( {where: {login: login}} )
+    console.log(login)
+    console.log(user)
     if(!user)
     {
         res.status(400)
-        res.json({message: "Nie ma takiego użytkownika"})
+        res.json({
+            success: false,
+            message: "Nie ma takiego użytkownika"
+        })
         return
     }
         
@@ -23,12 +28,18 @@ const postSigninController = async (req, res) => {
     if(!passwordResult)
     {
         res.status(400)
-        res.json({message: "Blędne hasło"})
+        res.json({
+            success: false,
+            message: "Blędne hasło"
+        })
         return
     }
 
     res.status(200)
-    res.json({user})
+    res.json({
+        success: true,
+        user
+    })
 }
 
 
