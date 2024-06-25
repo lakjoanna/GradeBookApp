@@ -68,3 +68,51 @@ html, body {
 .btn-primary:hover{
     color: #696969;
 }
+
+.nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    height: 10vh;
+    background-color: greenyellow;
+}
+
+
+.main-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 90vh;
+}
+
+.sidebar {
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100%;
+    width: 15%;
+}
+
+.content {
+    width: 85%;
+}
+
+.sidebar-nav-ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-nav-item {
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.sidebar-nav-a {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
+.sidebar-nav-a:hover {
+    color: rgb(50, 50, 50);
+}

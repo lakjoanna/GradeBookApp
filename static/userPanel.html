@@ -5,12 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="/js/userPanel.js"></script>
     <link rel="stylesheet" href="/css/index.css"/>
+    <link rel="stylesheet" href="/css/userPanel.css"/>
     <title>Panel Użytkownika</title>
 </head>
 <body>
-    <nav>
+    <nav class="nav">
+        <h2 id="studentName">Joanna Kowalska</h2>
         <button class="btn-primary" id="btnLogOut">Wyloguj</button>
     </nav>
-    <h1 class="form-caption">Panel Użytkownika</h1>
+    <div class="main-container">
+        <div class="sidebar">
+            <!-- Tutaj będzie panel nawigacji -->
+            <ul class="sidebar-nav-ul">
+                <li class="sidebar-nav-item">
+                    <a class="sidebar-nav-a" href="#">Strona 1</a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a class="sidebar-nav-a" href="#">Strona 2</a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a class="sidebar-nav-a" href="#">Strona 3</a>
+                </li>
+            </ul>
+        </div>
+        <div class="content">
+            <h1 class="form-caption">Panel Użytkownika</h1>
+            <!-- Tutaj będzie treść strony -->
+        </div>
+    </div>
 </body>
 </html>

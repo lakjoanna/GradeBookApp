@@ -36,6 +36,12 @@ app.use("/api/users", userRoute)
 const coursesRoute = require("./routes/coursesRoute")
 app.use("/api/courses", coursesRoute)
 
+const gradesRoute = require("./routes/gradesRoute")
+app.use("/api/grades", gradesRoute)
+
+const commentsRoute = require("./routes/commentsRoute")
+app.use("/api/comments", commentsRoute)
+
 app.get("/userpanel", (req,res) => {
     res.sendFile("./static/userPanel.html", { root: __dirname })
 })
