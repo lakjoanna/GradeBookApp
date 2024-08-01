@@ -1,9 +1,25 @@
 const User = require("../models/User")
 const bcrypt = require("bcrypt")
+const UserRole = require("../models/UserRole")
 
 const getAllUsersController = async (req,res) => {
     const users = await User.findAll()
     res.json({users})
+}
+
+const getUserController = async (req,res) => {
+    const id = req.params.id
+    if(!id) {
+        res.sendStatus(400)
+        return
+    }
+
+    const user = await User.findOne({ where: { id } })
+    if(!user) {
+        res.sendStatus(400)
+        return
+    }
+    res.json({ user })
 }
 
 const postCreateUserController = async (req,res) => {
@@ -64,9 +80,23 @@ const deleteRemoveUserController = async (req,res) => {
     await User.destroy({ where: {id: id} })
     res.sendStatus(200)
 }
+
+const getAllStudentsController = async (req,res) => {
+    const users = await User.findAll({
+        include: {
+            model: UserRole,
+            where: {
+                name: "Student"
+            }
+        }
+    })
+    res.json({ users })
+}
 module.exports = {
     getAllUsersController,
+    getUserController,
     postCreateUserController,
     putUpdateUserController,
-    deleteRemoveUserController
+    deleteRemoveUserController,
+    getAllStudentsController
 }

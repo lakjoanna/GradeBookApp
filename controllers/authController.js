@@ -1,6 +1,6 @@
 const User = require("../models/User")
 const bcrypt = require("bcrypt")
-const { use } = require("../routes/authRoute")
+const UserRole = require("../models/UserRole")
 
 const postSigninController = async (req, res) => {
     const login = req.body.login
@@ -11,9 +11,7 @@ const postSigninController = async (req, res) => {
     // 3. Sprawdzamy czy przesłane hasło jest zdogne z hasłem w bazie danych
     // 4. Jeśli wszystkie etapy logowania przeszły poprawnie, to znaczy, że użytkownik podał poprawne dane i możemy mu odesłać stosony obiekt (patrz na opis)
 
-    const user = await User.findOne( {where: {login: login}} )
-    console.log(login)
-    console.log(user)
+    const user = await User.findOne( { where: {login: login}, include: UserRole } )
     if(!user)
     {
         res.status(400)

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/js/teachersStudent.js"></script>
+    <link rel="stylesheet" href="/css/index.css">
+    <title>Uczniowie</title>
+</head>
+<body>
+    <nav class="nav">
+        <h2 id="teacherName"></h2>
+        <button class="btn-primary" id="btnLogOut">Wyloguj</button>
+    </nav>
+    <div class="main-container">
+        <div class="sidebar">
+            <!-- Tutaj będzie panel nawigacji -->
+            <ul class="sidebar-nav-ul">
+                <li class="sidebar-nav-item">
+                    <a href="/teacher/main" class="return">Panel nauczyciela</a>
+                </li>
+            </ul>
+        </div>
+        <div class="content">
+            <h1 class="form-caption">Uczniowie</h1>
+            <table id="students" class="datatable">
+                <thead>
+                    <tr>
+                        <th class="student-th">Id</th>
+                        <th class="student-th">Login</th>
+                        <th class="student-th">Name</th>
+                        <th class="student-th">Surname</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="studentsBody">
+        
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

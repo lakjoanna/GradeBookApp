@@ -9,14 +9,14 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const jsonUserData = localStorage.getItem("userData")
     const user = JSON.parse(jsonUserData).user
-    if(user.userrole.name == "Teacher")
+    if(user.userrole.name != "Teacher")
     {
-        window.location = "/teacher/main"
+        window.location = "/user/main"
         return
     }
 
     const btnLogOut = document.getElementById("btnLogOut")
-    const studentName = document.getElementById("studentName")
+    const teacherName = document.getElementById("teacherName")
 
     btnLogOut.addEventListener("click", (e) => 
     {
@@ -29,8 +29,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     // 2. Sparsować dane użytkownika do obiektu
     // 3. Wyświetlić dane użytkownika w elemencie "studentName"
 
+   
     const userData = JSON.parse(jsonUserData)
     console.log(userData)
 
-    studentName.innerText = userData.user.name + " " + userData.user.surname
+    teacherName.innerText = userData.user.name + " " + userData.user.surname
 })

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/js/teacherStudentsDetails.js"></script>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/teacherStudentsDetails.css">
+    <title>Document</title>
+</head>
+<body>
+    <nav class="nav nav-left">
+        <a href="/teacher/students" class="btn-main">Wróć</a>
+    </nav>
+
+    <div class="tableDetails">
+        <h1>Szczegóły</h1>
+        <table  class="datatable">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Imię</td>
+                    <td id="tdName">
+                        <input type="text" id="inputName" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Nazwisko</td>
+                    <td id="tdSurname">
+                        <input type="text" id="inputSurname" />
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <button  class="btn-details"  id="btnSaveStudentData">Zapisz</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    
+
+    <!-- Tabela z ocenami z poszczególnych przedmiotów -->
+
+        <h1>Oceny</h1>
+        <div id="divOceny">
+          
+        </div>
+
+        <table class="datatable">
+            <thead>
+                <th colspan="3">Angielski</th>
+            </thead>
+            <tbody id="tbodyOceny">
+                <tr>
+                    <td>
+                        <button>Usuń</button>
+                    </td>
+                    <td>
+                        5
+                    </td>
+                    <td>
+                        Sprawdzian nr. 1
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+  
+
+        <!-- Uwagi ucznia -->
+        <div class="comments-style">
+        <form id="formUwagi">
+            <h2>Dodaj Uwagę</h2>
+            <div>
+                <label>Tytuł</label>
+                <input type="text" id="addTitle"/>
+            </div>
+            <div>
+                <label>Treść</label>
+                <textarea id="addText"></textarea>
+            </div>
+            <button class="btn-details" id="btnAdd">Dodaj</button>
+        </form>
+        <h1>Uwagi</h1>
+        <table class="datatable">
+            <thead>
+                <th>Tytuł</th>
+                <th>Treść</th>
+                <th></th>
+            </thead>
+            <tbody id="tbodyUwagi">
+
+            </tbody>
+        </table>
+    </div>
+    </div>
+</body>
+</html>

@@ -5,6 +5,25 @@ const getAllCommentController = async (req, res) => {
     res.json({comments})
 }
 
+const getCommentsForStudentController = async (req, res) => {
+    const studentId = req.query.studentId
+
+    if(!studentId)
+    {
+        res.sendStatus(400)
+        return
+    }
+
+    const comments = await Comment.findAll({
+        where:{
+            userId: studentId
+        }
+    })
+
+    res.json({ comments })
+}
+
+
 const postCreateCommentController = async (req, res) => {
     const title = req.body.title
     const text = req.body.text
@@ -62,6 +81,7 @@ const deleteRemoveCommentController = async (req,res) => {
 
 module.exports = {
     getAllCommentController,
+    getCommentsForStudentController,
     postCreateCommentController,
     putUpdateCommentController,
     deleteRemoveCommentController 

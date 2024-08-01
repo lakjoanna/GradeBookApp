@@ -3,10 +3,19 @@ document.addEventListener("DOMContentLoaded", () => {
     // to przekirowywujemy go do panelu użytkownika
     if(localStorage.getItem("userData"))
     {
-        window.location = "/userpanel"
+        const jsonUserData = localStorage.getItem("userData")
+        const user = JSON.parse(jsonUserData).user
+
+        if(user.userrole.name == "Teacher")
+        {
+            window.location = "/teacher/main"
+        }
+        else
+        {
+            window.location = "/user/main"
+        }
         return
     }
-
 
     const inputLogin = document.getElementById("inputLogin")
     const inputPassword = document.getElementById("inputPassword")
@@ -50,7 +59,20 @@ document.addEventListener("DOMContentLoaded", () => {
             const json = JSON.stringify({ user: data.user })
             localStorage.setItem("userData", json)
 
-            window.location = "/userpanel"
+            console.log(data.user)
+
+            // Sprawdzamy czy użytkownik ma rolę o nazwie "Teacher"
+            // jeśli tak to przekierowywujemy go na stronę "/teacher/main"
+            // A jeśli nie to na stronę "/user/main"
+
+            if (data.user.userrole.name == 'Teacher')
+            {
+                window.location = "teacher/main"
+            } 
+            else
+            {
+                window.location = "/user/main"
+            }
         })
     })
 })

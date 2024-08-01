@@ -5,6 +5,26 @@ const getAllGradeController = async (req,res) => {
     res.json({grades})
 }
 
+const getStudentCourseGradesController = async (req, res) => {
+    const studentId = req.query.studentId
+    const courseId = req.query.courseId
+
+    if(!studentId || !courseId)
+    {
+        res.sendStatus(400)
+        return
+    }
+
+    const grades = await Grade.findAll({
+        where: {
+            userId: studentId,
+            courseId: courseId
+        }
+    })
+
+    res.json({ grades })
+}
+
 const postCreateGradeController = async (req,res) => {
     const value = req.body.value
     const description = req.body.description
@@ -71,6 +91,7 @@ const deleteRemoveGradeController = async (req,res) => {
 
 module.exports = {
     getAllGradeController,
+    getStudentCourseGradesController,
     postCreateGradeController,
     putUpdateGradeController,
     deleteRemoveGradeController

@@ -69,13 +69,71 @@ html, body {
     color: #696969;
 }
 
+
+.btn-secondary {
+    color: #5F8BC8;
+    border: 1px solid #24d8b7;
+    font-size: 20px;
+    padding: 10px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+.btn-main {
+    color: #5F8BC8;
+    font-size: 15px;
+    padding: 10px;
+    cursor: pointer;
+    background-color: transparent;
+    text-decoration: none;
+    border:none;
+}
+
+.btn-details {
+    color: #5F8BC8;
+    font-size: 15px;
+    padding: 10px;
+    cursor: pointer;
+    background-color: transparent;
+    text-decoration: none;
+    border:none;
+ 
+}
+
+.comments-style{
+    background-color: rgba(255, 255, 255, 0.397);
+}
+
+.return{
+    color: #5F8BC8;
+    border: 0px solid #24d8b7;
+    font-size: 20px;
+    padding: 20px;
+    transition-duration: 0.4s;
+    margin: 20px;
+    cursor: pointer;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+
 .nav {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
     height: 10vh;
-    background-color: greenyellow;
+    background-color: #fdedd4;
+    padding-left: 10px;
+    padding-right: 10%;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.nav-left {
+    justify-content: flex-start;
 }
 
 
@@ -87,13 +145,15 @@ html, body {
 }
 
 .sidebar {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color:  #fdedd4a7;
     height: 100%;
     width: 15%;
 }
 
 .content {
     width: 85%;
+    box-sizing: border-box;
+    padding: 10px;
 }
 
 .sidebar-nav-ul {
@@ -115,4 +175,32 @@ html, body {
 
 .sidebar-nav-a:hover {
     color: rgb(50, 50, 50);
+}
+
+/* table */
+.datatable {
+    border-collapse: collapse;
+}
+
+.datatable td, th {
+    border: 1px solid;
+    padding: 5px;
+}
+
+.datatable{
+    background-color: white;
+}
+
+.student-name{
+    color: #544d4d;
+    font-size: 20px;
+}
+
+.tableDetails{
+    margin:30px;
+    color: #544d4d;
+}
+
+.student-th{
+    color: #544d4d;
 }

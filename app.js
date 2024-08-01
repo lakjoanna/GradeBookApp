@@ -42,8 +42,20 @@ app.use("/api/grades", gradesRoute)
 const commentsRoute = require("./routes/commentsRoute")
 app.use("/api/comments", commentsRoute)
 
-app.get("/userpanel", (req,res) => {
+app.get("/user/main", (req,res) => {
     res.sendFile("./static/userPanel.html", { root: __dirname })
+})
+
+app.get("/teacher/main", (req, res) => {
+    res.sendFile("./static/teacherPanel.html", { root: __dirname })
+})
+
+app.get("/teacher/students", (req,res) => {
+    res.sendFile("./static/teacherStudents.html", { root: __dirname })
+})
+
+app.get("/teacher/students/details", (req, res) => {
+    res.sendFile("./static/teacherStudentsDetails.html", { root: __dirname })
 })
 
 database
@@ -91,7 +103,7 @@ database
                     password: passwordHash,
                     roleId: userRoleAdmin != null ? userRoleAdmin.id : null
                 })
-    
+
                 await User.create({
                     login: "Student",
                     name: "Jan",
@@ -100,7 +112,6 @@ database
                     roleId: userRoleStudent != null ? userRoleStudent.id : null
                 })
             }
-
            
             // Kursy startowe
             // - Matematyka
