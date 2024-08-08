@@ -8,9 +8,13 @@ document.addEventListener("DOMContentLoaded", () => {
         id = parseInt(querySplited[indexKeyId + 1])
     }
 
-    // 1. Pobrać dane ucznia na podstawie id, jeśli to id jest większe od 0
-    // jeśli id jest równe 0 to nie robimy nic
-    // 2. Wyświetlany imię i nazwisko w tabeli
+    // Formularz do dodawania nowych ocen
+    // 1. Tworzymy w html formularz zawierający 2 inputy
+    // - przemiot (<select>)
+    // - ocena (<input/> typu number)
+    // 2. Dodajemy przycisk "Dodaj"
+    // 3. Po kliknięciu przycisku ocena ma zostać dodana
+
 
     if(id > 0)
     {
@@ -18,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
         fetchStudentGrades(id)
         fetchStudentComments(id)
         initAddCommentForm(id)
+        initAddGradeForm(id)
     }
 })
 
@@ -89,7 +94,8 @@ function fetchStudentData(id) {
 
 function fetchStudentGrades(id)
 {
-    const tbodyOceny = document.getElementById("tbodyOceny")
+    const divOceny = document.getElementById("divOceny")
+    divOceny.innerHTML = ""
 
     //1. Pobrać informacje o przedmiotach
     //2. Zrobić pętlę po pobranych przedmiotach
@@ -114,9 +120,7 @@ function fetchStudentGrades(id)
             return
         }
 
-        console.log(data)
-
-        const divOceny = document.getElementById("divOceny")
+        // console.log(data)
         for(let course of data.courses)
         {
             // 1. Tworzymy w kodzie tabelę, wraz z thead, tbody oraz zawartością thead
@@ -150,31 +154,145 @@ function fetchStudentGrades(id)
             if(resGrades.ok)
             {
                 const dataGrades = await resGrades.json()
-                console.log(dataGrades)
+                // console.log(dataGrades)
 
-                for(const grade of dataGrades.grades)
-                {
+                if(dataGrades.grades.length == 0) {
                     const tr = document.createElement("tr")
                     tbody.appendChild(tr)
 
                     const tdOpis = document.createElement("td")
+                    tdOpis.colSpan = 3
                     tr.appendChild(tdOpis)
-                    tdOpis.innerText = grade.description
-
-                    const tdOcena = document.createElement("td")
-                    tr.appendChild(tdOcena)
-                    tdOcena.innerText = grade.value
-
-                    const tdBtnDelete = document.createElement("td")
-                    tr.appendChild(tdBtnDelete)
-
-                    const btn = document.createElement("button")
-                    btn.innerText = "Usuń"
-                    tdBtnDelete.appendChild(btn)
+                    tdOpis.innerText = "Brak ocen"
                 }
+                else
+                {
 
+                    for(const grade of dataGrades.grades)
+                    {
+                        const tr = document.createElement("tr")
+                        tbody.appendChild(tr)
+    
+                        const tdOpis = document.createElement("td")
+                        tr.appendChild(tdOpis)
+                        tdOpis.innerText = grade.description
+    
+                        const tdOcena = document.createElement("td")
+                        tr.appendChild(tdOcena)
+                        tdOcena.innerText = grade.value
+    
+                        const tdBtnDelete = document.createElement("td")
+                        tr.appendChild(tdBtnDelete)
+    
+                        const btn = document.createElement("button")
+                        btn.innerText = "Usuń"
+                        tdBtnDelete.appendChild(btn)
+    
+                        btn.addEventListener("click", (e) => {
+    
+                            fetch("http://localhost:3000/api/grades/" + grade.id, {
+                                method:"DELETE"
+                            })
+                            .then(res=>{
+                                if(res.ok)
+                                {
+                                    alert("usunięty")
+                                    fetchStudentGrades(id)
+                                    
+                                }
+                                else
+                                {
+                                    alert("error")
+                                }    
+                            })
+                            
+                        })
+                    }
+                }
             }
         }    
+    })
+}
+
+function initAddGradeForm(id) {
+
+        // Tworzenie opcji dla select
+        // 1. Poberamy z serwera przedmioty
+        // 2. W pętli tworzym <option>
+        // - ustawiamy innerText na nazwę przedmiout
+        // - ustawiamy value na id przedmiotu
+        // 3. dodajmy utworzone <option> do <select>
+
+        const selectSubject = document.getElementById("selectSubject")
+
+        fetch("http://localhost:3000/api/courses/all")
+        .then(res => {
+            if(res.ok)
+            {
+                return res.json()
+            }
+            else
+            {
+                alert("Error")
+            }
+        })
+        .then(data => {
+            if(!data)
+            {
+                return
+            }
+
+            console.log(data.courses)
+
+            for(let course of data.courses)
+            {
+                const option = document.createElement("option")
+                selectSubject.appendChild(option)
+                option.innerText= course.name
+                option.value = course.id
+            }
+        })
+
+    const formGrade = document.getElementById("formGrade")
+    const inputGrade = document.getElementById("inputGrade")
+    const buttonDodaj = document.getElementById("buttonDodaj")
+    const text = document.getElementById("text")
+
+    formGrade.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const courseId = selectSubject.value;
+        const value = inputGrade.value;
+        const description = text.value;
+
+        const data = {
+            courseId,
+            value,
+            description,
+            userId: id
+        }
+
+        fetch("http://localhost:3000/api/grades", {
+            method:"POST",
+            headers: {
+                "Content-Type":"application/json"
+            }, 
+            body: JSON.stringify(data)
+        })
+        .then(res=>{
+            if(res.ok)
+            {
+                selectSubject.value=""
+                inputGrade.value=""
+                text.value=""
+                fetchStudentGrades(id)
+            }
+            else
+            {
+                alert("Error")
+            }
+        })
+
     })
 }
 

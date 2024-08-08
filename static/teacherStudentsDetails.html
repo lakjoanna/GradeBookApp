@@ -47,12 +47,33 @@
 
     <!-- Tabela z ocenami z poszczególnych przedmiotów -->
 
+    
         <h1>Oceny</h1>
-        <div id="divOceny">
+
+        <form id="formGrade">
+            <h2>Dodaj Ocenę</h2>
+            <div>
+                <label>Przedmiot</label>
+                <select id="selectSubject"></select>
+            </div>
+
+            <div>
+                 <label>Ocena</label>
+                 <input type="number" id="inputGrade"/>
+            </div>
+
+            <div>
+                <label>Opis</label>
+                <textarea id="text"></textarea>
+            </div>
+            <button id="buttonDodaj">Dodaj</button>
+        </form>
+
+        <div class="grades" id="divOceny">
           
         </div>
-
-        <table class="datatable">
+        
+        <!-- <table class="datatable">
             <thead>
                 <th colspan="3">Angielski</th>
             </thead>
@@ -69,8 +90,8 @@
                     </td>
                 </tr>
             </tbody>
-        </table>
-  
+        </table> -->
+    
 
         <!-- Uwagi ucznia -->
         <div class="comments-style">
