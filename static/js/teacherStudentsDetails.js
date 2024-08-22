@@ -186,6 +186,7 @@ function fetchStudentGrades(id)
     
                         const btn = document.createElement("button")
                         btn.innerText = "Usuń"
+                        btn.className = "btn-main"
                         tdBtnDelete.appendChild(btn)
     
                         btn.addEventListener("click", (e) => {
@@ -207,6 +208,110 @@ function fetchStudentGrades(id)
                             })
                             
                         })
+
+                        const tdEdit = document.createElement("td")
+                        tr.appendChild(tdEdit)
+                        
+                        const edit = document.createElement("button")
+                        edit.innerText = "Edytuj"
+                        edit.className = "btn-main"
+                        tdEdit.appendChild(edit)
+
+                        edit.addEventListener("click", (e) => {
+                            edit.style.display = "none"
+
+                            // Edycja ocen
+                            tdOcena.innerHTML = ""
+                            const selectOcena = document.createElement("select")
+                            tdOcena.appendChild(selectOcena)
+
+                            const oceny = [1, 2, 2.5, 3, 3.5, 4, 4.5, 5]
+                            for(let i = 0; i < oceny.length; i++)
+                            {
+                                const ocena = oceny[i]
+
+                                const optionOcena = document.createElement("option")
+                                optionOcena.value = ocena
+                                optionOcena.innerText = ocena
+                                selectOcena.appendChild(optionOcena)
+                            }
+
+                            selectOcena.value = grade.value
+
+                            // Edycja opisu
+                            tdOpis.innerHTML = ""
+
+                            const textareaOpis = document.createElement("textarea")
+                            textareaOpis.value = grade.description
+                            tdOpis.appendChild(textareaOpis)
+
+
+                            
+                            // Pokazanie przycisków zapisz i anuluj
+                            const btnZapisz = document.createElement("button")
+                            btnZapisz.innerText = "Zapisz"
+                            btnZapisz.className = "btn-main"
+                            tdEdit.appendChild(btnZapisz)
+
+                            btnZapisz.addEventListener("click", () => {
+
+                                const value = selectOcena.value
+                                const description = textareaOpis.value
+
+                                const data = {
+                                    value,
+                                    description
+                                }
+
+                                // 1. Pobrać wartości z selectOcena i textareaOpis
+                                // 2. fetch aktualizujący dane na serwerze
+                                // 3. Ustawić dla odpowiednich td nowe wartości co spowoduje, że zniknie select i textarea a pojawią się konkretne wartości
+
+                                fetch("http://localhost:3000/api/grades/" + grade.id, {
+                                    method: "PUT",
+                                    headers: {
+                                        "Content-Type": "application/json"
+                                    },
+                                    body: JSON.stringify(data)
+                                })
+                                .then(res=>{
+                                    if(res.ok)
+                                    {
+                                        alert("Zapisano")
+
+                                        tdOcena.innerHTML = value
+                                        tdOpis.innerText = description
+
+                                        grade.value = value
+                                        grade.description = description
+
+                                        edit.style.display = ""
+                                        btnZapisz.remove()
+                                        btnAnuluj.remove()
+                                    }
+                                    else
+                                    {
+                                        alert("Błąd")
+                                    }
+                                })
+
+                            })
+
+                            const btnAnuluj = document.createElement("button")
+                            btnAnuluj.innerText = "Anuluj"
+                            btnAnuluj.className = "btn-main"
+                            tdEdit.appendChild(btnAnuluj)
+
+                            btnAnuluj.addEventListener("click", () => {
+                                tdOpis.innerText = grade.description
+                                tdOcena.innerHTML = grade.value
+
+                                edit.style.display = ""
+                                btnZapisz.remove()
+                                btnAnuluj.remove()
+                            })
+                        })
+
                     }
                 }
             }
@@ -337,6 +442,7 @@ function fetchStudentComments(id)
 
                 const button = document.createElement("button")
                 button.innerText = "Usuń"
+                button.className = "btn-main"
                 tdBtnDelete.appendChild(button)
 
                 button.addEventListener("click", (e) => {
@@ -355,6 +461,98 @@ function fetchStudentComments(id)
                             alert("error")
                         }    
                     })
+                    
+                })
+
+                const tdEdit = document.createElement("td")
+                tr.appendChild(tdEdit)
+
+                const edit = document.createElement("button")
+                edit.innerText = "Edytuj"
+                edit.className = "btn-main"
+                tdEdit.appendChild(edit)
+
+                edit.addEventListener("click", (e) => {
+                    edit.style.display = "none"
+
+                    // Edycja tytułu
+                    tdTitle.innerHTML = ""
+
+                    const inputTitle = document.createElement("input")
+                    inputTitle.value = comment.title
+                    tdTitle.appendChild(inputTitle)
+
+                    // Edycja treści
+                    tdText.innerHTML = ""
+                    const textarea = document.createElement("textarea")
+                    textarea.value = comment.text
+                    tdText.appendChild(textarea)
+
+                    // 1. Dodać przycisk Zapisz i Anuluj
+                    // 2. Zaprogramować click dla "Zapisz"
+                    // 3. Zaprogramować click dla "Anuluj"
+                    // 4. Po zapisaniu zaktualizować dane w tabeli
+                    // tak samo jak zrobiliśmy przy aktualizacji ocen
+
+                    const btnZapisz = document.createElement("button")
+                    btnZapisz.innerText = "Zapisz"
+                    btnZapisz.className = "btn-main"
+                    tdEdit.appendChild(btnZapisz)
+
+                    btnZapisz.addEventListener("click", () => {
+
+                        const title = inputTitle.value
+                        const text = textarea.value
+
+                        const data = {
+                            title,
+                            text
+                        }
+
+                        fetch("http://localhost:3000/api/comments/" + comment.id, {
+                            method: "PUT",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(data)
+                        })
+                        .then(res=>{
+                            if(res.ok)
+                            {
+                                alert("Zapisano")
+
+                                tdTitle.innerText = title
+                                tdText.innerText = text
+
+                                comment.title = title
+                                comment.text = text
+
+                                edit.style.display = ""
+                                btnZapisz.remove()
+                                btnAnuluj.remove()
+                            }
+                            else
+                            {
+                                alert("Błąd")
+                            }
+                        })
+
+                    })
+
+                    const btnAnuluj = document.createElement("button")
+                    btnAnuluj.innerText = "Anuluj"
+                    btnAnuluj.className = "btn-main"
+                    tdEdit.appendChild(btnAnuluj)
+
+                    btnAnuluj.addEventListener("click", () => {
+                        tdTitle.innerText = comment.title
+                        tdText.innerText = comment.text
+
+                        edit.style.display = ""
+                        btnZapisz.remove()
+                        btnAnuluj.remove()
+                    })
+
                     
                 })
             }

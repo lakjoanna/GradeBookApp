@@ -83,12 +83,25 @@ html, body {
 
 .btn-main {
     color: #5F8BC8;
+    font-size: 16px;
+    padding: 10px;
+    cursor: pointer;
+    background-color: transparent;
+    text-decoration: none;
+    border:none;
+}
+
+
+.btn-main-add {
+    color: #5F8BC8;
     font-size: 15px;
     padding: 10px;
     cursor: pointer;
     background-color: transparent;
     text-decoration: none;
     border:none;
+    font-size: 16px;
+    padding: 20px;
 }
 
 .btn-details {
@@ -103,7 +116,11 @@ html, body {
 }
 
 .comments-style{
-    background-color: rgba(255, 255, 255, 0.397);
+    background-color: rgba(255, 255, 255, 0.542);
+}
+
+.grades-style{
+   background-color:  rgba(255, 255, 255, 0.542);
 }
 
 .return{
@@ -209,8 +226,29 @@ html, body {
     display: flex;
     flex-direction: row;
     margin-bottom: 20px;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 
 .grades table {
     margin-right: 10px;
+}
+
+.textGrade {
+    padding-left: 6px;
+    margin-top: 10px;
+    margin-left: 15px;
+}
+
+.numberGrade {
+    margin-top: 10px;
+}
+
+.textUwaga {
+    margin-top: 10px;
+    padding-left: 5px;
+}
+
+.textTitle{
+    margin-left: 6px;
 }

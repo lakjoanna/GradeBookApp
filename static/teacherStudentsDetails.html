@@ -47,30 +47,40 @@
 
     <!-- Tabela z ocenami z poszczególnych przedmiotów -->
 
-    
+        <div class="grades-style">
         <h1>Oceny</h1>
 
         <form id="formGrade">
             <h2>Dodaj Ocenę</h2>
             <div>
                 <label>Przedmiot</label>
-                <select id="selectSubject"></select>
+                <select id="selectSubject" required="required"></select>
             </div>
 
             <div>
                  <label>Ocena</label>
-                 <input type="number" id="inputGrade"/>
+                 <select id="inputGrade" class="numberGrade" required="required">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="2.5">2.5</option>
+                    <option value="3">3</option>
+                    <option value="3.5">3.5</option>
+                    <option value="4">4</option>
+                    <option value="4.5">4.5</option>
+                    <option value="5">5</option>
+                 </select>
             </div>
 
             <div>
                 <label>Opis</label>
-                <textarea id="text"></textarea>
+                <textarea id="text" class="textGrade" required="required"></textarea>
             </div>
-            <button id="buttonDodaj">Dodaj</button>
+            <button id="buttonDodaj" class= "btn-main-add">Dodaj</button>
         </form>
 
         <div class="grades" id="divOceny">
           
+        </div>
         </div>
         
         <!-- <table class="datatable">
@@ -99,13 +109,13 @@
             <h2>Dodaj Uwagę</h2>
             <div>
                 <label>Tytuł</label>
-                <input type="text" id="addTitle"/>
+                <input class="textTitle" type="text" id="addTitle"/>
             </div>
             <div>
                 <label>Treść</label>
-                <textarea id="addText"></textarea>
+                <textarea class="textUwaga" id="addText"></textarea>
             </div>
-            <button class="btn-details" id="btnAdd">Dodaj</button>
+            <button class="btn-main-add" id="btnAdd">Dodaj</button>
         </form>
         <h1>Uwagi</h1>
         <table class="datatable">
