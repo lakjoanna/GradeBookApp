@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/js/teacherCourses.js"></script>
+    <link rel="stylesheet" href="/css/index.css">
+    <title>Kursy </title>
+</head>
+<body>
+    <nav class="nav">
+        <h2 id="teacherName"></h2>
+        <button class="btn-primary" id="btnLogOut">Wyloguj</button>
+    </nav>
+    <div class="main-container">
+        <div class="sidebar">
+            <!-- Tutaj będzie panel nawigacji -->
+            <ul class="sidebar-nav-ul">
+                <li class="sidebar-nav-item">
+                    <a href="/teacher/main" class="return">Pane nauczyciela</a>
+                </li>
+            </ul>
+        </div>    
+        <div class="content">
+            <h1>Kursy</h1>
+            <form id="formCourses">
+                <h2>Dodaj Kurs</h2>
+                <input id="inputName" name="name" type="text"/>
+                <button>Dodaj</button>
+            </form>
+            <!-- Tabelę z kursami -->
+            <table class="datatable">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="tbodyCourses">
+
+                </tbody>
+            </table>
+        </div>
+    </div> 
+</body>
+</html>

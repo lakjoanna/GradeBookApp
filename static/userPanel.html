@@ -14,23 +14,35 @@
         <button class="btn-primary" id="btnLogOut">Wyloguj</button>
     </nav>
     <div class="main-container">
-        <div class="sidebar">
-            <!-- Tutaj będzie panel nawigacji -->
-            <ul class="sidebar-nav-ul">
-                <li class="sidebar-nav-item">
-                    <a class="sidebar-nav-a" href="#">Strona 1</a>
-                </li>
-                <li class="sidebar-nav-item">
-                    <a class="sidebar-nav-a" href="#">Strona 2</a>
-                </li>
-                <li class="sidebar-nav-item">
-                    <a class="sidebar-nav-a" href="#">Strona 3</a>
-                </li>
-            </ul>
-        </div>
         <div class="content">
             <h1 class="form-caption">Panel Użytkownika</h1>
-            <!-- Tutaj będzie treść strony -->
+
+            <!-- Tabela z przedmiotami i po kliknięciu w wiersz danego przedmiotu przekieruje nas na stronę z ocenami i szczegółami odnośnie tego przedmiotu -->
+            <h2>Przedmioty</h2>
+            <table class="datatable">
+                <thead>
+                    <tr>
+                        <th>Lp</th>
+                        <th>Nazwa</th>
+                    </tr>
+                </thead>
+                <tbody id="coursesTBody">
+
+
+                </tbody>
+             </table>
+
+             <h2>Uwagi</h2>
+             <table class="datatable">
+                <thead>
+                    <th>Tytuł</th>
+                    <th>Treść</th>
+                </thead>
+                <tbody id="commentsTBody">
+    
+                </tbody>
+            </table>
+
         </div>
     </div>
 </body>

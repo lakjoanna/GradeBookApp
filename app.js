@@ -58,6 +58,14 @@ app.get("/teacher/students/details", (req, res) => {
     res.sendFile("./static/teacherStudentsDetails.html", { root: __dirname })
 })
 
+app.get("/user/grades", (req,res) => {
+    res.sendFile("./static/userGrades.html", { root: __dirname })
+})
+
+app.get("/teacher/courses", (req,res) => {
+    res.sendFile("./static/teacherCourses.html", { root: __dirname })
+})
+
 database
     // .sync({ force: true })
     .sync()

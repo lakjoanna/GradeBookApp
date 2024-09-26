@@ -279,7 +279,7 @@ function fetchStudentGrades(id)
                                     {
                                         alert("Zapisano")
 
-                                        tdOcena.innerHTML = value
+                                        tdOcena.innerText = value
                                         tdOpis.innerText = description
 
                                         grade.value = value
